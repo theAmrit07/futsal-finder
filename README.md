@@ -22,6 +22,23 @@ Finding people to play futsal with is harder than it should be. Even when you fi
 - **Authentication:** JWT (djangorestframework-simplejwt)
 - **Deployment:** (coming soon)
 
+---
+
+## Database Schema
+
+The following ER diagram illustrates the relationships between the core entities in the application.
+
+<p align="center">
+  <img src="diagrams/futsalFinder_ERD.jpg" alt="Futsal Finder ER Diagram" width="900">
+</p>
+
+**Entities**
+- **User** – Creates and joins futsal matches.
+- **Match** – Stores match information, available slots, status, location, date, and time.
+- **MatchPlayer** – Junction table that tracks which users have joined which matches.
+
+---
+
 ## API Endpoints
 
 ```
