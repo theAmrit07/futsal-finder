@@ -15,6 +15,15 @@ class MatchViewSet(viewsets.ModelViewSet):
         return Match.objects.all()
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+    def perform_update(self, serializer):
+        if self.get_object().created_by != self.request.user:
+            raise PermissionDenied("You can only edit your own matches")
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        if instance.created_by != self.request.user:
+            raise PermissionDenied("You can only delete your own matches")
+        instance.delete()    
     
 #logic for user registering to the app   
 @api_view(['POST'])
